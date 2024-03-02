@@ -1,7 +1,11 @@
 package services
 
+import entities.persons.LegalCustomer
+import entities.persons.NaturalCustomer
+import repositories.GenerationId
 import utilities.Util.Companion.printMessage
 import java.util.*
+import kotlin.collections.HashMap
 
 class CustomerService {
     companion object {
@@ -33,15 +37,39 @@ class CustomerService {
 
             when(option){
                 "l" -> {
-
+                    recordCustomerLegal()
                 }
                 "n" -> {
-
+                    recordCustomerNatural()
                 }
                 else -> {
                     printMessage("Sorry, however this option´s no existent.\n")
                 }
             }
+        }
+       fun recordCustomerLegal() {
+           var legals : MutableMap<Int, LegalCustomer> = HashMap<Int, LegalCustomer>()
+
+           var id = GenerationId.generateId(legals)
+           println("Name : ")
+           var name = readLine()
+           println("Zip code : ")
+           var zipCode = readLine()
+           println("Telephone : ")
+           var telephone = readLine()
+           println("Email : ")
+           var email = readLine()
+           println("Income : ")
+           var income = readLine()?.toDoubleOrNull()
+           readLine()
+           println("Username : ")
+           var username = readLine()
+           println("Password : ")
+           var password = readLine()
+
+        }
+        fun recordCustomerNatural() {
+            var naturals : MutableMap<Int, NaturalCustomer>
         }
     }
 }

@@ -1,5 +1,6 @@
 package services
 
+import application.main
 import entities.persons.Clerk
 import utilities.Util.Companion.printMessage
 
@@ -42,6 +43,42 @@ class ClerkService {
         }
         fun interactesClerk(clerk : Clerk){
             printMessage("      Welcome to your page, dearest ${clerk.nameClerk}\n")
+            println("            Choose an option            \n\n" +
+                    "                       CUSTOMER REQUESTS\n\n" +
+                    "                       1 - Create account of customers\n" +
+                    "                       2 - Delete account of customers\n" +
+                    "                       3 - Disable account of customers\n" +
+                    "                       4 - Working with income change requests\n\n" +
+                    "                       PERSONAL DATA\n\n" +
+                    "                       5 - Query data\n" +
+                    "                       6 - Update data\n\n" +
+                    "                       SYSTEM OPERATIONS\n\n" +
+                    "                       7 - Return to the initial menu\n")
+            var option = readLine()?.toIntOrNull()
+
+            when(option){
+                1 -> {
+
+                }
+                2 -> {
+
+                }
+                3 -> {
+
+                }
+                4 -> {
+
+                }
+                5 -> {
+
+                }
+                6 -> {
+
+                }
+                7 -> {
+                    main()
+                }
+            }
         }
     }
 }
