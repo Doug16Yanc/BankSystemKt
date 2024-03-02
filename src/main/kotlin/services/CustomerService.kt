@@ -4,6 +4,7 @@ import entities.persons.LegalCustomer
 import entities.persons.NaturalCustomer
 import repositories.GenerationId
 import utilities.Util.Companion.printMessage
+import utilities.Util.Companion.sc
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -48,28 +49,55 @@ class CustomerService {
             }
         }
        fun recordCustomerLegal() {
-           var legals : MutableMap<Int, LegalCustomer> = HashMap<Int, LegalCustomer>()
+           var legals: MutableMap<Int, LegalCustomer> = HashMap<Int, LegalCustomer>()
 
            var id = GenerationId.generateId(legals)
            println("Name : ")
-           var name = readLine()
+           var name = sc.nextLine()
            println("Zip code : ")
-           var zipCode = readLine()
+           var zipCode = sc.nextLine()
            println("Telephone : ")
-           var telephone = readLine()
+           var telephone = sc.nextLine()
            println("Email : ")
-           var email = readLine()
+           var email = sc.nextLine()
            println("Income : ")
-           var income = readLine()?.toDoubleOrNull()
-           readLine()
+           var income = sc.nextDouble()
+           sc.nextLine()
            println("Username : ")
-           var username = readLine()
+           var username = sc.nextLine()
            println("Password : ")
-           var password = readLine()
+           var password = sc.nextLine()
+           println("EIN : ")
+           var ein = sc.nextLong()
+
+           val legalCustomer = LegalCustomer(id, name, zipCode, telephone, email, income, username, password, ein)
+           legals.put(id, legalCustomer)
 
         }
         fun recordCustomerNatural() {
-            var naturals : MutableMap<Int, NaturalCustomer>
+            var naturals : MutableMap<Int, NaturalCustomer> = HashMap<Int, NaturalCustomer>()
+
+            var id = GenerationId.generateId(naturals)
+            println("Name : ")
+            var name = sc.nextLine()
+            println("Zip code : ")
+            var zipCode = sc.nextLine()
+            println("Telephone : ")
+            var telephone = sc.nextLine()
+            println("Email : ")
+            var email = sc.nextLine()
+            println("Income : ")
+            var income = sc.nextDouble()
+            sc.nextLine()
+            println("Username : ")
+            var username = sc.nextLine()
+            println("Password : ")
+            var password = sc.nextLine()
+            println("SSN : ")
+            var ssn = sc.nextLong()
+
+            val naturaCustomer = NaturalCustomer(id, name, zipCode, telephone, email, income, username, password, ssn)
+            naturals.put(id, naturaCustomer)
         }
     }
 }
