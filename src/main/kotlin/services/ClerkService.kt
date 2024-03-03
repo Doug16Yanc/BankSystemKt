@@ -138,6 +138,7 @@ class ClerkService {
                 }
                 else -> {
                     printMessage("Sorry, however this option´s no existent.\n")
+                    return false
                 }
             }
             return true
