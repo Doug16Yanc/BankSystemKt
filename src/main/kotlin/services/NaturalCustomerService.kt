@@ -14,7 +14,7 @@ import kotlin.collections.ArrayList
 
 class NaturalCustomerService {
     companion object{
-        private var naturalRequests : MutableList<Request> = ArrayList<Request>()
+        var naturalRequests : MutableList<Request> = ArrayList<Request>()
         fun interactesNatural(naturalCustomer : NaturalCustomer){
             printMessage("PAGE NATURAL CUSTOMER")
             println("Welcome, dearest ${naturalCustomer.nameCustomer}.\n");

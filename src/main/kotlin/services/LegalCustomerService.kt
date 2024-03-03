@@ -15,7 +15,7 @@ import kotlin.collections.ArrayList
 
 class LegalCustomerService {
     companion object{
-        private var legalRequests : MutableList<Request> = ArrayList<Request>()
+        var legalRequests : MutableList<Request> = ArrayList<Request>()
         fun interactesLegal(legalCustomer: LegalCustomer){
             printMessage("PAGE LEGAL CUSTOMER\n")
             println("Welcome, dearest ${legalCustomer.nameCustomer}.\n");
