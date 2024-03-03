@@ -9,5 +9,5 @@ data class NaturalCustomer(
     override var income : Double,
     override var username : String,
     override var password : String,
-    val ssn: Long
+    val ssn: String
 ) :  Customer(idCustomer, nameCustomer, zipCode, telephone, email, income, username, password)

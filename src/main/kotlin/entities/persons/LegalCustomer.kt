@@ -9,5 +9,5 @@ data class LegalCustomer (
     override var income : Double,
     override var username : String,
     override var password : String,
-    val ein: Long
+    val ein: String
 ) :  Customer(idCustomer, nameCustomer, zipCode, telephone, email, income, username, password)

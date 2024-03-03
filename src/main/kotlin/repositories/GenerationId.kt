@@ -6,41 +6,41 @@ import kotlin.random.Random
 
 class GenerationId {
     companion object {
-        fun generateId(legals: MutableMap<Int, LegalCustomer>) : Int{
-            var enter = Random.nextInt(1000, 100000)
-            var help : Boolean = true
-            while (enter != 1) {
-                for (i in 0 until legals.size) {
-                    if (legals.containsKey(enter)) {
+        fun generateIdLegal(legals: MutableList<LegalCustomer>): Int {
+            var enter: Int
+            var help: Boolean
+
+            do {
+                enter = Random.nextInt(1000, 100000)
+                help = true
+                for (i in legals) {
+                    if (i.idCustomer == enter) {
                         help = false
+                        break
                     }
                 }
-            }
-            if (help){
-                return enter
-            }
-            else {
-                enter = Random.nextInt(1000, 100000)
-            }
+            } while (!help)
+
             return enter
         }
-        fun generateId(naturals : MutableMap<Int, NaturalCustomer>) : Int{
-            var enter = Random.nextInt(1000, 100000)
-            var help : Boolean = true
-            while (enter != 1) {
-                for (i in 0 until naturals.size) {
-                    if (naturals.containsKey(enter)) {
+
+        fun generateIdNatural(naturals: MutableList<NaturalCustomer>): Int {
+            var enter: Int
+            var help: Boolean
+
+            do {
+                enter = Random.nextInt(1000, 100000)
+                help = true
+                for (i in naturals) {
+                    if (i.idCustomer == enter) {
                         help = false
+                        break
                     }
                 }
-            }
-            if (help){
-                return enter
-            }
-            else {
-                enter = Random.nextInt(1000, 100000)
-            }
+            } while (!help)
+
             return enter
         }
+
     }
 }
