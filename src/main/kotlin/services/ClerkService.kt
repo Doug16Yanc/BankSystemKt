@@ -2,6 +2,10 @@ package services
 
 import application.main
 import entities.persons.Clerk
+import services.ClerkRequestsService.Companion.analiseUpdateIncome
+import services.ClerkRequestsService.Companion.doAccountCreation
+import services.ClerkRequestsService.Companion.doAccountDeletion
+import services.ClerkRequestsService.Companion.doAccountDisabilitation
 import utilities.Util.Companion.printMessage
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -62,16 +66,16 @@ class ClerkService {
 
             when(option){
                 1 -> {
-
+                    doAccountCreation()
                 }
                 2 -> {
-
+                    doAccountDeletion()
                 }
                 3 -> {
-
+                    doAccountDisabilitation()
                 }
                 4 -> {
-
+                    analiseUpdateIncome()
                 }
                 5 -> {
                     queryDataClerk(clerk);

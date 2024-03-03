@@ -4,6 +4,8 @@ import application.main
 import entities.persons.LegalCustomer
 import entities.persons.NaturalCustomer
 import repositories.GenerationId
+import services.LegalCustomerService.Companion.interactesLegal
+import services.NaturalCustomerService.Companion.interactesNatural
 import utilities.Util.Companion.printMessage
 import utilities.Util.Companion.sc
 import java.time.LocalDateTime
@@ -53,6 +55,7 @@ class CustomerService {
         fun doLoginLegal(legals: MutableList<LegalCustomer>) {
             var attempts : Int = 3
             var found : Boolean = false
+            var help = LegalCustomer(0, "", "", "", "", 0.00, "", "", "")
             printMessage("Page of login legal customer\n")
             sc.nextLine()
             println("Enter your id:")
@@ -71,10 +74,12 @@ class CustomerService {
                     for (legal in legals){
                         if (legal.username.equals(username) && legal.password.equals(password)){
                             found = true
+                            help = legal
                         }
                     }
                     if (found){
                         println("Login successfully!\n")
+                        interactesLegal(help)
                     }
                     else{
                         println("Credentials not recognized!\n")
@@ -90,6 +95,7 @@ class CustomerService {
         fun doLoginNatural(naturals: MutableList<NaturalCustomer>) {
             var attempts : Int = 3
             var found : Boolean = false
+            var help = NaturalCustomer(0, "", "", "", "", 0.00, "", "", "")
             printMessage("Page of login natural customer\n")
             sc.nextLine()
             println("Enter your id:")
@@ -107,10 +113,13 @@ class CustomerService {
                     for (natural in naturals){
                         if (natural.username.equals(username) && natural.password.equals(password)){
                             found = true
+                            help = natural
                         }
                     }
                     if (found){
                         println("Login successfully!\n")
+                        interactesNatural(help)
+                        break
                     }
                     else{
                         println("Credentials not recognized!\n")

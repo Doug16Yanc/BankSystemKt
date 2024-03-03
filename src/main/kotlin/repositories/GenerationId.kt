@@ -1,5 +1,7 @@
 package repositories
 
+import entities.bank.CheckingAccount
+import entities.bank.SavingsAccount
 import entities.persons.LegalCustomer
 import entities.persons.NaturalCustomer
 import kotlin.random.Random
@@ -41,6 +43,41 @@ class GenerationId {
 
             return enter
         }
+        fun generateIdCheckingAccount(checkingAccounts: MutableList<CheckingAccount>): Int {
+            var enter: Int
+            var help: Boolean
+
+            do {
+                enter = Random.nextInt(8000, 800000)
+                help = true
+                for (i in checkingAccounts) {
+                    if (i.accountNumber == enter) {
+                        help = false
+                        break
+                    }
+                }
+            } while (!help)
+
+            return enter
+        }
+        fun generateIdSavingsAccount(savingsAccounts: MutableList<SavingsAccount>): Int {
+            var enter: Int
+            var help: Boolean
+
+            do {
+                enter = Random.nextInt(8000, 800000)
+                help = true
+                for (i in savingsAccounts) {
+                    if (i.accountNumber == enter) {
+                        help = false
+                        break
+                    }
+                }
+            } while (!help)
+
+            return enter
+        }
+
 
     }
 }

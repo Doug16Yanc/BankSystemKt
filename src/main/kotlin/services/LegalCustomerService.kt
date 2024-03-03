@@ -1,11 +1,13 @@
 package services
 
+import application.main
 import entities.bank.Request
 import entities.persons.LegalCustomer
 import entities.persons.NaturalCustomer
 import enumerations.TypeAccountCreation
 import enumerations.TypeCustomer
 import enumerations.TypeRequest
+import services.FinancialService.Companion.driveFinancialOperations
 import utilities.Util.Companion.printMessage
 import utilities.Util.Companion.sc
 import java.time.LocalDateTime
@@ -87,10 +89,11 @@ class LegalCustomerService {
                         updateDataLegal(legalCustomer)
                     }
                     6 -> {
-
+                        driveFinancialOperations()
                     }
                     7 -> {
-
+                        main()
+                        break
                     }
                 }
             } while(true)
