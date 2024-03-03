@@ -3,6 +3,10 @@ package services
 import application.main
 import entities.persons.Clerk
 import utilities.Util.Companion.printMessage
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ClerkService {
     companion object{
@@ -70,15 +74,73 @@ class ClerkService {
 
                 }
                 5 -> {
-
+                    queryDataClerk(clerk);
                 }
                 6 -> {
-
+                    updateDataClerk(clerk)
                 }
                 7 -> {
                     main()
                 }
             }
+        }
+        fun queryDataClerk(clerk : Clerk) : Boolean {
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+            val currentTime= LocalDateTime.now().format(formatter)
+            printMessage("QUERY DATA" +
+                    "    > Name : ${clerk.nameClerk}\n" +
+                    "    > Id of clerk : ${clerk.idClerk}\n" +
+                    "    > Email : ${clerk.emailClerk}\n" +
+                    "    > Username : ${clerk.username}\n\n" +
+                    "     OPERATION DATA\n\n" +
+                    "    > Code operation : ${UUID.randomUUID()}\n" +
+                    "    > Date and time : ${currentTime}\n")
+            return true
+        }
+        fun updateDataClerk(clerk: Clerk): Boolean {
+            printMessage("You have permission to update only email, username and password.\n")
+            println(" E/e - Email \n U/u - Username\n P/p - Password\n")
+            var option = readLine()?.trim()?.lowercase(Locale.getDefault())
+
+            when(option){
+                "e" -> {
+                    println("New email : ")
+                    var newEmail = readLine()
+                    if (newEmail != null) {
+                        clerk.emailClerk = newEmail
+                        println("Email updated successfully!")
+                    }
+                    else{
+                        println("Operation unsuccessuflly!\n")
+                    }
+                }
+                "u" -> {
+                    println("New username : ")
+                    var newUsername = readLine()
+                    if (newUsername != null) {
+                        clerk.username = newUsername
+                        println("Username updated successfully!")
+                    }
+                    else{
+                        println("Operation unsuccessuflly!\n")
+                    }
+                }
+                "p" -> {
+                    println("New password : ")
+                    var newPassword = readLine()
+                    if (newPassword != null) {
+                        clerk.password = newPassword
+                        println("Password updated successfully!")
+                    }
+                    else{
+                        println("Operation unsuccessuflly!\n")
+                    }
+                }
+                else -> {
+                    printMessage("Sorry, however this option´s no existent.\n")
+                }
+            }
+            return true
         }
     }
 }
