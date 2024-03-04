@@ -15,8 +15,8 @@ import kotlin.collections.ArrayList
 
 class CustomerService {
     companion object {
-        private var legals: MutableList<LegalCustomer> = ArrayList<LegalCustomer>()
-        private var naturals: MutableList<NaturalCustomer> = ArrayList<NaturalCustomer>()
+        var legals: MutableList<LegalCustomer> = ArrayList<LegalCustomer>()
+        var naturals: MutableList<NaturalCustomer> = ArrayList<NaturalCustomer>()
         fun asksAboutCustomer() {
             printMessage("Welcome to our page of customers\n")
             println("Have you already registered in our system?\n  Y/y - Yes\n  N/n - Not\n")
@@ -55,7 +55,7 @@ class CustomerService {
         fun doLoginLegal(legals: MutableList<LegalCustomer>) {
             var attempts : Int = 3
             var found : Boolean = false
-            var help = LegalCustomer(0, "", "", "", "", 0.00, "", "", "")
+            var help = LegalCustomer(0, "", "", "", "", 0.00, "", "", null, "")
             printMessage("Page of login legal customer\n")
             sc.nextLine()
             println("Enter your id:")
@@ -95,7 +95,7 @@ class CustomerService {
         fun doLoginNatural(naturals: MutableList<NaturalCustomer>) {
             var attempts : Int = 3
             var found : Boolean = false
-            var help = NaturalCustomer(0, "", "", "", "", 0.00, "", "", "")
+            var help = NaturalCustomer(0, "", "", "", "", 0.00, "", "", null,"")
             printMessage("Page of login natural customer\n")
             sc.nextLine()
             println("Enter your id:")
@@ -171,7 +171,7 @@ class CustomerService {
             println("EIN : ")
             val ein = sc.nextLine()
 
-            val legalCustomer = LegalCustomer(id, name, zipCode, telephone, email, income, username, password, ein)
+            val legalCustomer = LegalCustomer(id, name, zipCode, telephone, email, income, username, password, null, ein)
             proofRecordLegal(legalCustomer)
             legals.add(legalCustomer)
             main()
@@ -196,7 +196,7 @@ class CustomerService {
             var password = sc.nextLine()
             println("SSN : ")
             var ssn = sc.nextLine()
-            val naturalCustomer = NaturalCustomer(id, name, zipCode, telephone, email, income, username, password, ssn)
+            val naturalCustomer = NaturalCustomer(id, name, zipCode, telephone, email, income, username, password, null, ssn)
             proofRecordNatural(naturalCustomer)
             naturals.add(naturalCustomer)
             main()

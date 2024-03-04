@@ -48,7 +48,8 @@ class ClerkRequestsService {
                 val customer = naturalRequests.find { it.customer.idCustomer == id } ?: legalRequests.find { it.customer.idCustomer == id }
 
                 if (customer != null){
-                    println("Account creation successfully!\n")
+                    println("Request account creation successfully!\n")
+                    doCreation(customer)
                 }
                 else{
                     println("Operation unsuccessfully!\n")
@@ -90,7 +91,8 @@ class ClerkRequestsService {
                 val customer = naturalRequests.find { it.customer.idCustomer == id } ?: legalRequests.find { it.customer.idCustomer == id }
 
                 if (customer != null){
-                    println("Account deletion successfully!\n")
+                    println("Request account deletion successfully!\n")
+                    doDeletion(customer)
                 }
                 else{
                     println("Operation unsuccessfully!\n")
@@ -131,7 +133,8 @@ class ClerkRequestsService {
                 val customer = naturalRequests.find { it.customer.idCustomer == id } ?: legalRequests.find { it.customer.idCustomer == id }
 
                 if (customer != null){
-                    println("Account disabilitation successfully!\n")
+                    println("Request account disabilitation successfully!\n")
+                    doDisabilitation(customer)
                 }
                 else{
                     println("Operation unsuccessfully!\n")
@@ -162,6 +165,7 @@ class ClerkRequestsService {
 
                 val checkingAccount = CheckingAccount(numberAccount, currentTime, null, password, balance, null, limitAccount)
                 checkingsAccounts.add(checkingAccount)
+                request.customer.accounts = listOf(checkingAccount)
             }
             else if (request.typeAccountCreation == TypeAccountCreation.SAVINGS) {
 
@@ -176,13 +180,28 @@ class ClerkRequestsService {
 
                 val savingAccount = SavingsAccount(numberAccount, currentTime, null, password, balance, null, birthday, yield)
                 savingsAccounts.add(savingAccount)
+                request.customer.accounts = listOf(savingAccount)
             }
         }
-        fun doDeletion(){
-
+        fun doDeletion(request : Request){
+            if (request.typeAccountCreation == TypeAccountCreation.CHECKING){
+                println("I confirm that the account removal has been successfully performed.\n")
+                checkingsAccounts.removeAt(request.customer.idCustomer)
+            }
+            else if (request.typeAccountCreation == TypeAccountCreation.SAVINGS){
+                println("I confirm that the account removal has been successfully performed.\n")
+                checkingsAccounts.removeAt(request.customer.idCustomer)
+            }
         }
-        fun doDisabilitation(){
+        fun doDisabilitation(request : Request){
+            if (request.typeAccountCreation == TypeAccountCreation.CHECKING){
+                println("I confirm that the account removal has been successfully performed.\n")
 
+            }
+            else if (request.typeAccountCreation == TypeAccountCreation.SAVINGS){
+                println("I confirm that the account removal has been successfully performed.\n")
+                checkingsAccounts.removeAt(request.customer.idCustomer)
+            }
         }
     }
 }
