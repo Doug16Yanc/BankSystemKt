@@ -1,5 +1,6 @@
 package entities.bank
 
+import enumerations.AccountSituation
 import java.util.*
 
 data class CheckingAccount(
@@ -8,6 +9,7 @@ data class CheckingAccount(
         override var closureAccount: Date?,
         override var password: String,
         override var balance: Double,
+        override var accountSituation : AccountSituation,
         override var movements: List<Movement>? = mutableListOf(),
         var limitAccount: Double
-) : Account(accountNumber, apertureAccount, closureAccount, password, balance)
+) : Account(accountNumber, apertureAccount, closureAccount, password, balance, accountSituation)

@@ -3,6 +3,7 @@ package services
 import entities.bank.CheckingAccount
 import entities.bank.Request
 import entities.bank.SavingsAccount
+import enumerations.AccountSituation
 import enumerations.TypeAccountCreation
 import enumerations.TypeRequest
 import repositories.GenerationId.Companion.generateIdCheckingAccount
@@ -163,7 +164,7 @@ class ClerkRequestsService {
                 var balance = 0.00
                 var limitAccount = 100000.00
 
-                val checkingAccount = CheckingAccount(numberAccount, currentTime, null, password, balance, null, limitAccount)
+                val checkingAccount = CheckingAccount(numberAccount, currentTime, null, password, balance, AccountSituation.ACTIVE, null, limitAccount)
                 checkingsAccounts.add(checkingAccount)
                 request.customer.accounts = listOf(checkingAccount)
             }
@@ -178,7 +179,7 @@ class ClerkRequestsService {
                 var birthday = currentTime
                 var yield = 0.05
 
-                val savingAccount = SavingsAccount(numberAccount, currentTime, null, password, balance, null, birthday, yield)
+                val savingAccount = SavingsAccount(numberAccount, currentTime, null, password, balance, AccountSituation.ACTIVE, null, birthday, yield)
                 savingsAccounts.add(savingAccount)
                 request.customer.accounts = listOf(savingAccount)
             }
@@ -193,14 +194,25 @@ class ClerkRequestsService {
                 checkingsAccounts.removeAt(request.customer.idCustomer)
             }
         }
-        fun doDisabilitation(request : Request){
-            if (request.typeAccountCreation == TypeAccountCreation.CHECKING){
-                println("I confirm that the account removal has been successfully performed.\n")
+        fun doDisabilitation(request : Request) {
+            val customer = request.customer
+            val customerId = customer.idCustomer
 
+            for (account in checkingsAccounts) {
+                if (request.typeAccountCreation == TypeAccountCreation.CHECKING) {
+                    if (customer.idCustomer == customerId) {
+                        println("I confirm that the account disabilitation has been successfully performed.\n")
+                        account.accountSituation == AccountSituation.INACTIVE
+                    }
+
+                }
             }
-            else if (request.typeAccountCreation == TypeAccountCreation.SAVINGS){
-                println("I confirm that the account removal has been successfully performed.\n")
-                checkingsAccounts.removeAt(request.customer.idCustomer)
+            for (account in savingsAccounts) {
+                if (request.typeAccountCreation == TypeAccountCreation.SAVINGS) {
+                    if (customer.idCustomer == customerId)
+                        println("I confirm that the account disabilitation has been successfully performed.\n")
+                    account.accountSituation == AccountSituation.INACTIVE
+                }
             }
         }
     }

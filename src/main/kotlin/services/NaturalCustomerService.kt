@@ -6,6 +6,8 @@ import entities.persons.NaturalCustomer
 import enumerations.TypeAccountCreation
 import enumerations.TypeCustomer
 import enumerations.TypeRequest
+import services.CustomerService.Companion.doAccessAccount
+import services.CustomerService.Companion.doAccessAccountNatural
 import services.FinancialService.Companion.driveFinancialOperations
 import utilities.Util.Companion.printMessage
 import utilities.Util.Companion.sc
@@ -16,7 +18,7 @@ import kotlin.collections.ArrayList
 
 class NaturalCustomerService {
     companion object{
-        var naturalRequests : MutableList<Request> = ArrayList<Request>()
+        public var naturalRequests : MutableList<Request> = ArrayList<Request>()
         fun interactesNatural(naturalCustomer : NaturalCustomer){
             printMessage("PAGE NATURAL CUSTOMER")
             println("Welcome, dearest ${naturalCustomer.nameCustomer}.\n");
@@ -25,13 +27,14 @@ class NaturalCustomerService {
                         "                   REQUESTS\n\n" +
                         "                   1 - Creation of account\n" +
                         "                   2 - Delete an account\n" +
-                        "                   3 - Disable an account\n\n" +
+                        "                   3 - Disable an account\n" +
+                        "                   4 - Access an account\n\n" +
                         "                   PERSONAL DATA\n\n" +
-                        "                   4 - Query data\n" +
-                        "                   5 - Update\n\n" +
+                        "                   5 - Query data\n" +
+                        "                   6 - Update\n\n" +
                         "                   SYSTEM OPERATIONS\n\n" +
-                        "                   6 - Go to the financial operations\n" +
-                        "                   7 - Return to the initial menu\n");
+                        "                   7 - Go to the financial operations\n" +
+                        "                   8 - Return to the initial menu\n");
                 var option = sc.nextInt()
 
                 when(option){
@@ -82,15 +85,18 @@ class NaturalCustomerService {
                         }
                     }
                     4 -> {
-                        queryDataNatural(naturalCustomer)
+                        doAccessAccountNatural(naturalCustomer)
                     }
                     5 -> {
-                        updateDataNatural(naturalCustomer)
+                        queryDataNatural(naturalCustomer)
                     }
                     6 -> {
-                        driveFinancialOperations()
+                        updateDataNatural(naturalCustomer)
                     }
                     7 -> {
+                        driveFinancialOperations()
+                    }
+                    8 -> {
                         main()
                         break
                     }

@@ -3,10 +3,10 @@ package services
 import application.main
 import entities.bank.Request
 import entities.persons.LegalCustomer
-import entities.persons.NaturalCustomer
 import enumerations.TypeAccountCreation
 import enumerations.TypeCustomer
 import enumerations.TypeRequest
+import services.CustomerService.Companion.doAccessAccountLegal
 import services.FinancialService.Companion.driveFinancialOperations
 import utilities.Util.Companion.printMessage
 import utilities.Util.Companion.sc
@@ -17,7 +17,7 @@ import kotlin.collections.ArrayList
 
 class LegalCustomerService {
     companion object{
-        var legalRequests : MutableList<Request> = ArrayList<Request>()
+        public var legalRequests : MutableList<Request> = ArrayList<Request>()
         fun interactesLegal(legalCustomer: LegalCustomer){
             printMessage("PAGE LEGAL CUSTOMER\n")
             println("Welcome, dearest ${legalCustomer.nameCustomer}.\n");
@@ -26,7 +26,8 @@ class LegalCustomerService {
                         "                   REQUESTS\n\n" +
                         "                   1 - Creation of account\n" +
                         "                   2 - Delete an account\n" +
-                        "                   3 - Disable an account\n\n" +
+                        "                   3 - Disable an account\n" +
+                        "                   4 - Access an account\n\n" +
                         "                   PERSONAL DATA\n\n" +
                         "                   4 - Query data\n" +
                         "                   5 - Update\n\n" +
@@ -83,15 +84,18 @@ class LegalCustomerService {
                         }
                     }
                     4 -> {
-                        queryDataLegal(legalCustomer)
+                        doAccessAccountLegal(legalCustomer)
                     }
                     5 -> {
-                        updateDataLegal(legalCustomer)
+                        queryDataLegal(legalCustomer)
                     }
                     6 -> {
-                        driveFinancialOperations()
+                        updateDataLegal(legalCustomer)
                     }
                     7 -> {
+                        driveFinancialOperations()
+                    }
+                    8 -> {
                         main()
                         break
                     }

@@ -3,6 +3,7 @@ package services
 import application.main
 import entities.persons.LegalCustomer
 import entities.persons.NaturalCustomer
+import enumerations.AccountSituation
 import repositories.GenerationId
 import services.LegalCustomerService.Companion.interactesLegal
 import services.NaturalCustomerService.Companion.interactesNatural
@@ -229,6 +230,20 @@ class CustomerService {
                     "   Data operation  \n\n" +
                     "   > Operation code : ${UUID.randomUUID()}\n" +
                     "   > Data and time : ${currentTime}")
+        }
+        fun doAccessAccountNatural(naturalCustomer: NaturalCustomer) {
+            for (account in naturalCustomer.accounts!!){
+               if (account.accountSituation == AccountSituation.ACTIVE){
+                   println("Account number : ${account.accountNumber}")
+               }
+            }
+        }
+        fun doAccessAccountLegal(legalCustomer: LegalCustomer){
+            for (account in legalCustomer.accounts!!){
+                if (account.accountSituation == AccountSituation.ACTIVE){
+                    println("Account number : ${account.accountNumber}")
+                }
+            }
         }
     }
 }

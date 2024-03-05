@@ -2,6 +2,7 @@ package services
 
 import entities.persons.Manager
 import utilities.Util.Companion.printMessage
+import utilities.Util.Companion.sc
 
 class ManagerService {
     companion object{
@@ -29,6 +30,22 @@ class ManagerService {
         }
         fun doInteractesManager(manager: Manager){
             printMessage("      Welcome to your page, dearest ${manager.nameManager}      \n")
+            println("Select an option : \n " +
+                    "1 - See reports\n" +
+                    "2 - See total balance\n")
+            var option = sc.nextInt()
+
+            when(option){
+                1 -> {
+
+                }
+                2 -> {
+
+                }
+                else -> {
+                    printMessage("Sorry, however this option´s no existent.\n")
+                }
+            }
         }
     }
 }

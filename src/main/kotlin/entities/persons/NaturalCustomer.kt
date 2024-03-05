@@ -13,4 +13,6 @@ data class NaturalCustomer(
     override var password : String,
     override var accounts : List<Account>? = mutableListOf(),
     val ssn: String
-) :  Customer(idCustomer, nameCustomer, zipCode, telephone, email, income, username, password, accounts)
+) :  Customer(idCustomer, nameCustomer, zipCode, telephone, email, income, username, password, accounts) {
+
+}
